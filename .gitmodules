@@ -1,0 +1,4 @@
+[submodule "fgAPIServer"]
+	path = fgAPIServer
+	url = https://github.com/FutureGatewayFramework/fgAPIServer.git
+	branch = master

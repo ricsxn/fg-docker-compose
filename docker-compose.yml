@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+
+  fgdb:
+    image: mariadb
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+    volumes:
+      - ./fgAPIServer:/docker-entrypoint-initdb.d
+
+  fgapiserver:
+    image: eosc-fgapiserver
+    working_dir: /home/futuregateway/fgapiserver
+    command: ['python', 'fgapiserver.py']
+    links:
+      - fgdb
+    ports:
+      - 8888:8888

@@ -1,7 +1,6 @@
 version: '3.7'
 
 services:
-
   fgdb:
     image: mariadb
     environment:
@@ -11,9 +10,13 @@ services:
 
   fgapiserver:
     image: eosc-fgapiserver
-    working_dir: /home/futuregateway/fgapiserver
-    command: ['python', 'fgapiserver.py']
     links:
       - fgdb
+
+  apiserverdaemon:
+    image: eosc-apiserverdaemon
+    links:
+      - fgdb
+      - fgapiserver
     ports:
-      - 8888:8888
+      - 8080:8080
